@@ -1,0 +1,43 @@
+/* snip3r.de Carbon — a low-glare, technical radio cockpit */
+:root {
+  --bg-main: #020304; --bg-sidebar: rgba(8, 10, 12, .98);
+  --bg-card: rgba(14, 17, 20, .98); --bg-card-hover: rgba(25, 29, 34, .99);
+  --titlebar-bg: #090b0e; --text-main: #f1f4f8; --text-muted: #8e9bad;
+  --accent-color: #6c63ff; --accent-hover: #857eff; --accent-glow: rgba(108, 99, 255, .48);
+  --border-color: rgba(183, 196, 215, .12); --glass-border: 1px solid var(--border-color);
+  --font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --shadow-sm: 0 3px 10px rgba(0,0,0,.46); --shadow-glow: 0 0 16px rgba(108,99,255,.42);
+  --transition: all .2s cubic-bezier(.2,.8,.2,1);
+}
+html, body { background: #020304; }
+#app { background: radial-gradient(ellipse at 80% -15%,rgba(108,99,255,.08),transparent 37%),radial-gradient(ellipse at 10% 110%,rgba(0,198,255,.04),transparent 34%),#020304; position:relative; isolation:isolate; }
+
+/* A short spectrum runner follows the exact window perimeter. */
+#app::after { content:''; position:absolute; z-index:1000; inset:0; pointer-events:none; background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='r' x1='0' y1='0' x2='100' y2='100' gradientUnits='userSpaceOnUse'%3E%3Cstop stop-color='%23ff315d'/%3E%3Cstop offset='.2' stop-color='%23ffb52e'/%3E%3Cstop offset='.4' stop-color='%23d9ff41'/%3E%3Cstop offset='.6' stop-color='%2324e1a8'/%3E%3Cstop offset='.8' stop-color='%2316a9ff'/%3E%3Cstop offset='1' stop-color='%23ef4bff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='.18' y='.18' width='99.64' height='99.64' fill='none' stroke='url(%23r)' stroke-width='.35' pathLength='100' stroke-dasharray='12 88'%3E%3Canimate attributeName='stroke-dashoffset' from='0' to='-100' dur='4s' repeatCount='indefinite'/%3E%3C/rect%3E%3C/svg%3E") center/100% 100% no-repeat; filter:drop-shadow(0 0 5px rgba(110,101,255,.7)); }
+
+/* Woven 2×2 twill: dark enough for long listening sessions. */
+.sidebar,.player,.titlebar,.station-card { background-image:linear-gradient(27deg,rgba(0,0,0,.42) 5px,transparent 5px),linear-gradient(207deg,rgba(0,0,0,.42) 5px,transparent 5px),linear-gradient(27deg,transparent 5px,rgba(255,255,255,.035) 5px,rgba(255,255,255,.035) 6px,transparent 6px),linear-gradient(207deg,transparent 5px,rgba(255,255,255,.028) 5px,rgba(255,255,255,.028) 6px,transparent 6px),linear-gradient(90deg,rgba(255,255,255,.014) 1px,transparent 1px); background-position:0 5px,0 5px,5px -5px,-5px 0,0 0; background-size:10px 10px,10px 10px,10px 10px,10px 10px,5px 5px; }
+.titlebar { background-color:var(--titlebar-bg); border-bottom-color:rgba(172,187,208,.13); }
+.app-logo { border-radius:5px; background:linear-gradient(135deg,#847cff,#4d46db); box-shadow:0 0 14px rgba(108,99,255,.58),inset 0 1px rgba(255,255,255,.3); }
+.content { position:relative; isolation:isolate; }
+.content::before { content:'BY SNIP3R'; position:absolute; right:clamp(18px,5vw,80px); bottom:clamp(20px,7vh,80px); z-index:-1; color:rgba(163,175,196,.055); font-size:clamp(54px,11vw,170px); font-weight:900; letter-spacing:.08em; line-height:1; white-space:nowrap; transform:rotate(-10deg); text-shadow:1px 1px rgba(255,255,255,.028),-1px -1px rgba(0,0,0,.5); user-select:none; pointer-events:none; }
+.sidebar { background-color:var(--bg-sidebar); backdrop-filter:blur(16px); border-right-color:rgba(172,187,208,.12); }
+input[type="text"],select { background:rgba(1,2,3,.82); border-color:rgba(196,205,219,.1); }
+input[type="text"]:focus,select:focus { border-color:var(--accent-color); box-shadow:0 0 0 3px rgba(108,99,255,.18),inset 0 1px rgba(255,255,255,.04); }
+select option { background:#15191f; }
+.btn-primary { background:linear-gradient(135deg,#746cff,#5750ea); box-shadow:0 5px 18px rgba(92,83,245,.32),inset 0 1px rgba(255,255,255,.18); }
+.btn-primary:hover { background:linear-gradient(135deg,#8a83ff,#625af6); box-shadow:0 7px 22px rgba(92,83,245,.44),inset 0 1px rgba(255,255,255,.2); }
+.btn-secondary,.btn-nav-item { background-color:rgba(255,255,255,.035); border-color:rgba(196,205,219,.12); }
+.btn-secondary:hover,.btn-nav-item:hover { background-color:rgba(255,255,255,.075); border-color:rgba(196,205,219,.2); }
+.btn-nav-item.active { background:linear-gradient(105deg,rgba(108,99,255,.24),rgba(108,99,255,.08)); border-color:#6c63ff; box-shadow:inset 3px 0 #8b84ff,0 0 15px rgba(108,99,255,.2); }
+.content-header h1 { background:linear-gradient(100deg,#fff 25%,#bfc8dc 100%); -webkit-background-clip:text; }
+.station-card { background-color:var(--bg-card); border-color:rgba(196,205,219,.13); box-shadow:inset 0 1px rgba(255,255,255,.035),0 8px 22px rgba(0,0,0,.16); }
+.station-card::before { background:linear-gradient(155deg,rgba(132,124,255,.18),transparent 48%,rgba(0,198,255,.06)); }
+.station-card:hover { background-color:var(--bg-card-hover); border-color:rgba(132,124,255,.62); box-shadow:inset 0 1px rgba(255,255,255,.07),0 13px 28px rgba(0,0,0,.42),0 0 0 1px rgba(108,99,255,.08); }
+.station-card .logo,.np-logo { border-color:rgba(185,197,217,.14); background:#0c0f13; }
+.player { background-color:rgba(8,10,12,.99); border-top-color:rgba(172,187,208,.14); box-shadow:0 -10px 30px rgba(0,0,0,.26); }
+.player-btn.play { background:linear-gradient(135deg,#fbfcff,#d9ddeb); box-shadow:0 5px 16px rgba(0,0,0,.36),inset 0 1px rgba(255,255,255,.9); }
+.player-btn.play:hover { background:#fff; }
+.update-badge { background:rgba(108,99,255,.12); border-color:rgba(132,124,255,.42); color:#aaa5ff; }
+::-webkit-scrollbar-thumb { background:rgba(150,164,184,.25); }
+::-webkit-scrollbar-thumb:hover { background:rgba(150,164,184,.42); }
